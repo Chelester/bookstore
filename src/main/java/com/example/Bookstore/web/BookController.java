@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.Bookstore.domain.Book;
+import com.example.Bookstore.domain.Category;
 
 @Controller
 @ResponseBody
@@ -17,7 +18,7 @@ public class BookController {
 	@RequestMapping("/index")
 	public String index() {
 		List<Book> books = new ArrayList<>();
-		books.add(new Book("The Hobbit", "J. R. R. Tolkien", 1937, "978-0345339683", 6.14));
+		books.add(new Book("The Hobbit", "J. R. R. Tolkien", 1937, "978-0345339683", 6.14, new Category("0", "Scifi/Fantasia")));
 		return "List of books" + books;
 	}
 }

@@ -21,9 +21,9 @@ public class BookstoreApplication {
 	public CommandLineRunner bookstore(BookRepository repository) {
 		return (args) -> {
 			log.info("save a couple of books");
-			repository.save(new Book("Ensimmäinen", "author", 2011, "isbn 12312-3123", 10.0));
-			repository.save(new Book("Toinen kirja", "author", 2012, "isbn 1234-1234-23", 15.5));
-			repository.save(new Book("Kolmas kirja", "author", 2013, "isbn 123-123-123", 9.9));
+			repository.save(new Book("Ensimmäinen", "author", "isbn 12312-3123", 2011 ,10.0));
+			repository.save(new Book("Toinen kirja", "author", "isbn 1234-1234-23", 2012, 15.5));
+			repository.save(new Book("Kolmas kirja", "author", "isbn 123-123-123", 2013, 9.9));
 			
 			log.info("fetch all books");
 			for (Book book : repository.findAll()) {

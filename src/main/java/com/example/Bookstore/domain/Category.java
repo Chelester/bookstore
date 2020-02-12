@@ -1,5 +1,6 @@
 package com.example.Bookstore.domain;
 
+
 public class Category {
 	public String id;
 	public String name;
@@ -32,5 +33,4 @@ public class Category {
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + "]";
 	}
-	
 }

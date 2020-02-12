@@ -20,22 +20,22 @@ public class BookController {
 		model.addAttribute("books", repository.findAll());
 		return "booklist";
 	}
-	@RequestMapping(value={"/add"})
+	@RequestMapping(value="/add")
 	public String addbook(Model model) {
 		model.addAttribute("book", new Book());
 		return "addbook";
 	}
 	
-	@RequestMapping(value={"/edit/{id}"})
+	@RequestMapping(value="/edit/{id}")
 	public String Editbook(@PathVariable("id")long bookId, Model model) {
-		model.addAttribute("book", bookId);
+		model.addAttribute("book", repository.findById(bookId).get());
 		return "editbook";
 	}
 
 	@RequestMapping(value="/saveEdit", method=RequestMethod.POST)
 	public String saveEdit(Book book) {
 		repository.save(book);
-		return "redirect:../booklist";                                                                                                                                                                                     
+		return "redirect:../booklist";
 	}
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String save(Book book) {

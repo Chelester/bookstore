@@ -1,6 +1,5 @@
 package com.example.Bookstore.web;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,25 +33,20 @@ public class BookController {
 		return "editbook";
 	}
 
-	@RequestMapping(value="/saveEdit", method=RequestMethod.POST)
-	public String saveEdit(Book book) {
-		Optional<Book> bookEntity = repository.findById(book.getId());
-		Book newBook = bookEntity.get();
-		newBook.setTitle(book.getTitle());
-		newBook.setAuthor(book.getAuthor());
-		newBook.setIsbn(book.getIsbn());
-		newBook.setYear(book.getYear());
-		newBook.setPrice(book.getPrice());
-		newBook = repository.save(newBook);
+	@RequestMapping(value="/update/{id}", method=RequestMethod.POST)
+	public String saveEdit(@PathVariable("id")long id, Book book, Model model) {
+		book.setId(id);
+		repository.save(book);
 		return "redirect:../booklist";
 	}
+	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String save(Book book) {
 		repository.save(book);
 		return "redirect:booklist";
 	}
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
-	public String DeleteBook(@PathVariable("id")Long bookId, Model model) {
+	public String DeleteBook(@PathVariable("id")long bookId, Model model) {
 		repository.deleteById(bookId);
 		return "redirect:../booklist";
 	}
